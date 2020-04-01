@@ -11,3 +11,66 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.center {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0 !important;
+  margin-block-end: 0;
+  margin-block-start: 0;
+  padding-inline-start: 0;
+}
+
+.login-div {
+  border: rgb(219, 219, 219) solid 1px;
+  border-radius: 5px;
+  width: 300px;
+  margin: 120px auto;
+  min-height: 350px;
+  
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-head {
+  padding: 20px;
+  background-color: rgb(0, 103, 206);
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  color: white;
+  font-size: medium;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 600;
+}
+
+.login-info {
+  margin: 10px;
+  font-size: small;
+  color: rgb(133, 133, 133);
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  height: 50px;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+.avatar-sm {
+  height: 35px;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+.user-login-div {
+  border-top: rgb(247, 247, 247) solid 1px;
+  width: 100%;
+  padding-left: 5px;
+}
+
+.bottom-border {
+  border-bottom: rgb(247, 247, 247) solid 1px;
+}
