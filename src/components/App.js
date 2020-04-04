@@ -3,7 +3,7 @@ import handleInitialData from '../actions/shared'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import LoginComponent from './LoginComponent'
+import LoginComponent from './Login'
 import Dashboard from './Dashboard'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
@@ -47,10 +47,10 @@ class App extends React.Component {
   }
 }
 
-function mapStateToProps({ users, authedUser }) {
+function mapStateToProps({ users, authedUser, questions }) {
 
   return {
-    loading: users === null,
+    loading: users === null || questions === null,
     authedUser
   }
 }

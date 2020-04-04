@@ -2,7 +2,7 @@ import React from 'react'
 import Filter from '../filter-solid.svg'
 import FilterOutline from '../filter-solid-outline.svg'
 import { connect } from 'react-redux'
-import QuestionsComponent from './QuestionsComponent'
+import QuestionsComponent from './Questions'
 import updateFilterType, { filterTitle, UNANSWERED_POLLS } from '../actions/filterType'
 import Nav, { HOME } from './Nav'
 
