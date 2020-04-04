@@ -2,6 +2,7 @@ import React from 'react'
 import Nav, { NEW_QUESTION } from './Nav'
 import { connect } from 'react-redux'
 import { handleSaveQuestion, OPTION_ONE, OPTION_TWO } from '../actions/questions'
+import { withRouter } from 'react-router-dom'
 
 class NewQuestion extends React.Component {
 
@@ -19,6 +20,7 @@ class NewQuestion extends React.Component {
 
     saveQuestion = () => {
         const { optionOne, optionTwo } = this.state
+        const { history } = this.props
 
         if(optionOne.length === 0){
             alert("Please fill in the first option")
@@ -44,7 +46,7 @@ class NewQuestion extends React.Component {
             optionTwo : ''
         })
 
-        alert("Your poll has been added")
+        history.push('/')
     }
 
     render() {
@@ -88,4 +90,4 @@ function mapStateToProps({ dispatch, authedUser }) {
     }
 }
 
-export default connect(mapStateToProps)(NewQuestion)
+export default withRouter(connect(mapStateToProps)(NewQuestion))

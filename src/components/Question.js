@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { OPTION_ONE, OPTION_TWO } from '../actions/questions'
 import { handleSaveQuestionAnswer } from '../actions/questions'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import AnsweredPoll from './AnsweredPoll'
+import UnansweredPoll from './UnansweredPoll'
 
 class Question extends React.Component {
 
@@ -14,9 +15,11 @@ class Question extends React.Component {
     }
 
     handleSaveAnswerOption = (qid, answer) => {
-        const { dispatch, authedUser } = this.props
+        const { dispatch, authedUser, history } = this.props
 
         dispatch(handleSaveQuestionAnswer({ authedUser, qid, answer }))
+
+        history.push(`/questions/${qid}`)
     }
 
     render() {
@@ -42,40 +45,11 @@ class Question extends React.Component {
                 {
                     this.answeredPoll() ?
                         (
-                            <div>
-                                <div className="question">
-                                    <p className="question-option">
-                                        {optionOne.text}
-                                    </p>
-                                    or
-                                    <p className="question-option">
-                                        {optionTwo.text}
-                                    </p>
-                                </div>
-
-
-                                <Link to={`questions/${qid}`}>
-                                    <div className="question-action">
-                                        View Poll
-                                    </div>
-                                </Link>
-                            </div>
+                            <AnsweredPoll info={{optionOne, optionTwo, qid}} />
                         ) :
                         (
-                            <div>
-                                <div className="question">
-                                    <p className="question-option answer-me"
-                                        onClick={() => this.handleSaveAnswerOption(qid, OPTION_ONE)}>
-                                        {optionOne.text}
-                                    </p>
-                                    or
-                                    <p className="question-option answer-me"
-                                        onClick={() => this.handleSaveAnswerOption(qid, OPTION_TWO)}>
-                                        {optionTwo.text}
-                                    </p>
-                                </div>
-                                <br />
-                            </div>
+                            <UnansweredPoll info={{optionOne, optionTwo, qid}} 
+                            saveAnswer={this.handleSaveAnswerOption}/>
                         )
                 }
             </div>
@@ -92,4 +66,4 @@ function mapStateToProps({ authedUser, questions, users }) {
     }
 }
 
-export default connect(mapStateToProps)(Question)
+export default withRouter(connect(mapStateToProps)(Question))

@@ -8,7 +8,9 @@ function logOut(e, props) {
     const { dispatch, history } = props
 
     e.preventDefault()
+
     dispatch(setAuthedUser(null))
+    
     history.push("/")
 }
 
