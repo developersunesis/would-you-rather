@@ -1,6 +1,16 @@
 # Would You Rather
 This is a single-page app, final assessment project for Udacity's React Redux course. This project postulates the use of React Native dom to create a simple poll/voting system. The projects shows the use of React, Component, Router, React States, Functional Components, React props, Redux etc.
 
+## Installation
+
+Clone the repository, change directories, and use NPM to install the dependencies.
+
+```bash
+$ git clone https://github.com/developersunesis/would-you-rather
+$ cd would-you-rather
+$ npm install
+```
+
 ## Get Started
 
 To get started, clone/pull the project and then:
@@ -46,8 +56,6 @@ To get started, clone/pull the project and then:
 ```
 
 The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
-
-Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
 
 ## Data
 
