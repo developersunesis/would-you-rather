@@ -1,35 +1,57 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import handleInitialData from '../actions/shared'
 import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import LoginComponent from './LoginComponent'
+import Dashboard from './Dashboard'
+import NewQuestion from './NewQuestion'
+import LeaderBoard from './LeaderBoard'
+import LoadingBar from 'react-redux-loading'
+import ViewPoll from './ViewPoll';
 
 class App extends React.Component {
 
   state = {
-    currentUser : null
+    currentUser: null
   }
 
   componentDidMount() {
-    this.props.dispatch(handleInitialData())
-  }
-
-  signInUser(){
-    console.log("Clicked sign in")
+    this.props.dispatch(handleInitialData(this.state))
   }
 
   render() {
     return (
-      <div className="container">
-        <LoginComponent itemClicked={this.signInUser}/>
-      </div>
+      <Router>
+        <Fragment>
+          <LoadingBar />
+          {
+            this.props.loading !== true ? (
+              <div className="container">
+                {
+                  (this.props.authedUser === null) ?
+                    <LoginComponent />
+                    :
+                    <div>
+                      <Route path='/' exact component={Dashboard} />
+                      <Route path='/leaderboard' component={LeaderBoard} />
+                      <Route path='/add' component={NewQuestion} />
+                      <Route path='/questions/:question_id' component={ViewPoll} />
+                    </div>
+                }
+              </div>) : null
+          }
+        </Fragment>
+      </Router>
     );
   }
 }
 
-function mapStateToProps({authedUser}){
+function mapStateToProps({ users, authedUser }) {
+
   return {
-    loading: authedUser === null
+    loading: users === null,
+    authedUser
   }
 }
 

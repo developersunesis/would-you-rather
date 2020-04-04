@@ -1,8 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 function UserLogin(props) {
 
-    const { avatar, name, questions, onClick } = props
+    const { id, onClick } = props
+
+    const { avatarURL, name, questions } = props.users[id]
 
     return (
         <div className="user-login-div" 
@@ -13,7 +16,8 @@ function UserLogin(props) {
                 width: '100%'
             }}>
                 <img
-                    src="https://github.com/developersunesis/would-you-rather/raw/master/public/1120.jpg"
+                    src={avatarURL}
+                    alt={`Author of ${name}`}
                     className="avatar-sm" />
                 <div style={{
                     marginTop: '7px',
@@ -21,19 +25,18 @@ function UserLogin(props) {
                     cursor: 'pointer',
                     width: '100%'
                 }}>
-                    <span style={{
-                        fontSize: '0.9em'
-                    }}><b>Username</b></span>
-                    <p style={{
-                        marginTop: '-2px',
-                        padding: '0',
-                        color: 'grey',
-                        fontSize: '0.7em'
-                    }}>Has 50 polls</p>
+                    <span style={{fontSize: '0.9em'}}><b>{name}</b></span>
+                    <p className="info">Has {questions.length} polls</p>
                 </div>
             </div>
         </div>
     )
 }
 
-export default UserLogin
+function mapStateToProps({ users }){
+    return {
+        users
+    }
+}
+
+export default connect(mapStateToProps)(UserLogin)
